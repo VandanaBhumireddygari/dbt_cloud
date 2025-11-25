@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: raw
+    database: MARKETING_ANALYTICS
+    schema: RAW
+    tables:
+      - name: GOOGLE_ADS
+      - name: META_ADS
+      - name: SESSIONS
+      - name: ORDERS
