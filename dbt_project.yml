@@ -21,3 +21,9 @@ models:
     marts:
       +schema: analytics
       +materialized: table
+
+flags:
+  partial_parse: false
+
+
+
