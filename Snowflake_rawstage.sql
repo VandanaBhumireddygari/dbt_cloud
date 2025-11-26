@@ -1,0 +1,76 @@
+LIST @RAW_STAGE;
+CREATE OR REPLACE TABLE GOOGLE_ADS (
+    date DATE,
+    campaign_id STRING,
+    campaign_name STRING,
+    channel STRING,
+    impressions NUMBER,
+    clicks NUMBER,
+    cost FLOAT
+);
+
+CREATE OR REPLACE TABLE META_ADS (
+    date DATE,
+    campaign_id STRING,
+    campaign_name STRING,
+    channel STRING,
+    impressions NUMBER,
+    clicks NUMBER,
+    cost FLOAT
+);
+
+CREATE OR REPLACE TABLE SESSIONS (
+    session_id STRING,
+    user_id STRING,
+    session_start_ts TIMESTAMP_NTZ,
+    utm_source STRING,
+    utm_medium STRING,
+    utm_campaign STRING
+);
+
+
+CREATE OR REPLACE TABLE ORDERS (
+    order_id STRING,
+    user_id STRING,
+    order_ts TIMESTAMP_NTZ,
+    session_id STRING,
+    revenue FLOAT
+);
+
+
+COPY INTO GOOGLE_ADS
+FROM @raw_stage/google_ads_6months.csv
+FILE_FORMAT = (TYPE='CSV' SKIP_HEADER=1 FIELD_OPTIONALLY_ENCLOSED_BY='"');
+
+
+COPY INTO META_ADS
+FROM @raw_stage/meta_ads_6months.csv
+FILE_FORMAT = (TYPE='CSV' SKIP_HEADER=1 FIELD_OPTIONALLY_ENCLOSED_BY='"');
+
+COPY INTO SESSIONS
+FROM @raw_stage/sessions_6months.csv
+FILE_FORMAT = (TYPE='CSV' SKIP_HEADER=1 FIELD_OPTIONALLY_ENCLOSED_BY='"');
+
+COPY INTO ORDERS
+FROM @raw_stage/orders_6months.csv
+FILE_FORMAT = (TYPE='CSV' SKIP_HEADER=1 FIELD_OPTIONALLY_ENCLOSED_BY='"');
+
+
+SELECT COUNT(*) FROM GOOGLE_ADS;
+SELECT COUNT(*) FROM META_ADS;
+SELECT COUNT(*) FROM SESSIONS;
+SELECT COUNT(*) FROM ORDERS;
+
+SELECT * FROM GOOGLE_ADS LIMIT 10;
+
+
+CREATE OR REPLACE API INTEGRATION GITHUB_API_INT
+    API_PROVIDER = git_https_api
+    API_ALLOWED_PREFIXES = ('https://github.com/')
+    ENABLED = TRUE
+    ALLOWED_AUTHENTICATION_SECRETS = ALL;
+
+    ALTER GIT REPOSITORY my_repo FETCH;
+
+
+    CREATE SCHEMA IF NOT EXISTS MARKETING_ANALYTICS.snapshots;
