@@ -31,6 +31,8 @@ This project demonstrates a **complete modern data pipeline** using Snowflake, d
 ```
 
 ---
+<img width="1400" height="933" alt="image" src="https://github.com/user-attachments/assets/15c8b1bc-68fe-4e4b-b092-0559b77f9774" />
+
 
 # 🚀 Project Overview
 
