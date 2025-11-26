@@ -1,14 +1,11 @@
-Got you — here is the **full README in clean Markdown**, formatted perfectly for GitHub.
-Just copy–paste into your repo as `README.md`.
 
----
 
 # 📊 Marketing Attribution Data Pipeline
 
 ### **Snowflake | dbt Cloud | Streamlit | Staging → Transform → Orchestrate → Visualize**
 
 This project demonstrates a **complete modern data pipeline** using Snowflake, dbt Cloud, and Streamlit — starting from ingesting raw CSVs into Snowflake, transforming them with dbt, orchestrating automated runs, and visualizing business insights in an interactive dashboard.
-
+https://app.snowflake.com/vyqkkjb/ycb94226/#/streamlit-apps/MARKETING_ANALYTICS.DBT_VBHUMIREDDYGARI_ANALYTICS.Y7BL1RMN8LGT_MHU
 ---
 
 ## 📁 Repository Structure
